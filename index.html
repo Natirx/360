@@ -49,7 +49,7 @@
 		.img-container {
 			border: 1px solid #ccc;
 		    width: 100%;
-		    max-width:640px;
+		    max-width:1080px;
 		    margin: 0 auto;
 		    padding:0;
 		    cursor: ew-resize;
@@ -81,7 +81,7 @@
 
 		$(function() {
 
-			var num = 6; // the total number of images 
+			var num = 72; // the total number of images
 
 			// Preload all the images into hidden div
 			for (var i=1 ; i<=num ; i++) {
@@ -108,10 +108,10 @@
 
 			function swipeStatus(event, phase, direction, distance) {
 				var duration = 0;
-				if(direction == "left") {
+				if(direction == "right") {
 					changeImg(distance);
 				}
-				else if (direction == "right") {
+				else if (direction == "left") {
 					changeImgR(-distance);
 				}
 			}
@@ -119,24 +119,26 @@
 			function changeImg (imgNum) {
 
 				// spread it out so it doesn't load new img every single px of swipe distance
-				imgNum = Math.floor(imgNum/8); 
+				imgNum = Math.floor(imgNum/2);
 				
-				if (imgNum < 1) {
+				if (imgNum < 1 ) {
 					imgNum += num;
 				}
-				if (imgNum > num) {
+				if (imgNum > num ) {
 					imgNum -= num;
 				}
-
+			
+					document.getElementById("myImg").src="images/dyvan_"+imgNum+".jpg";
+				
 				// change the image src
-				document.getElementById("myImg").src="images/dyvan_"+imgNum+".jpg";
+				
 				
 			}
 
 			function changeImgR (imgNum) {
 
 				// spread it out so it doesn't load new img every single px of swipe distance
-				imgNum = Math.floor(imgNum/8); 
+				imgNum = Math.floor(imgNum/2);
 
 				var num2 = -Math.abs(num); 
 				if (imgNum > num2) {
@@ -164,7 +166,6 @@
 				<div class="img360"><img id="myImg" src="images/dyvan_1.jpg" /></div>
 			</div>
 			<div class="caption">&larr; Swipe &rarr; or Click and Drag to rotate</div>
-			<div class="caption"><a href="http://www.woosterwebdesign.com/responsive-360-viewer/">Related Blog Post</a></div>
 			<div id="preload-imgs"></div>
 		</div>
 
